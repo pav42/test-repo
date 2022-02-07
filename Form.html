@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            Header
+        </header>
+        <main class="main">
+            <h1 class="titleText">Form</h1>
+            <div class="container">
+                <section class="leftCol">
+                    <h2>Instructions to fill out the form</h2>
+                    <ul class="formInstructions">
+                        <li>All fields marked “required (*)” must be completed.</li>
+                       
+                    </ul>
+                </section>
+                <section class="rightCol">
+                    <form class="userForm">
+                        <ul class="userForm_ul">
+                            <li>
+                                <label for="name">Name<span class="userForm_required">*</span></label>
+                                <input type="text" id="name" name="name" required>
+                            </li>
+                            <li>
+                                <label for="email">Email<span class="userForm_required">*</span></label>
+                                <input type="text" id="email" name="email" required>
+                            </li>
+                            <li>
+                                <label for="email">Telephone number</label>
+                                <input type="tel" id="telephone" name="telephone">
+                            </li>
+                            <li>
+                                <label for="request">Request field</label>
+                                <textarea id="request" name="request" rows="10"></textarea>
+                            </li>
+                            <li>
+                                <label class="submitLabel">&nbsp;</label>
+                                <input type="submit" value="Send" class="userForm_submitBtn">
+                            </li>
+                        </ul>
+                    </form>
+                </section>
+            </div>
+        </main>
+        <footer class="footer">
+            Footer
+        </footer>
+    </div>
+</body>
+</html>

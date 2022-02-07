@@ -1,0 +1,164 @@
+
+
+var deck_id, card_img, prev_card_value, curr_card_value, isHigher, end_of_deck;
+var points = 0 ;
+
+
+const cardValueMap = new Map();
+cardValueMap.set('A', 1);
+cardValueMap.set('2', 2);
+cardValueMap.set('3', 3);
+cardValueMap.set('4', 4);
+cardValueMap.set('5', 5);
+cardValueMap.set('6', 6);
+cardValueMap.set('7', 7);
+cardValueMap.set('8', 8);
+cardValueMap.set('9', 9);
+cardValueMap.set('0', 10);
+cardValueMap.set('J', 11);
+cardValueMap.set('Q', 12);
+cardValueMap.set('K', 13);
+
+
+//To fetch a new deck of cards 
+const fetchNewDeck = () => {
+    axios.get('https://deckofcardsapi.com/api/deck/new/draw/?count=1')
+        .then(response => {
+            deck_id = response.data.deck_id;
+            card_img = response.data.cards[0].image;
+            prev_card_value = response.data.cards[0].code
+            //Extracting first character for checking higher/lower value
+            prev_card_value = prev_card_value.charAt(0)
+
+            showHide('messageConatiner','none');
+
+            showHide('startNewGame', 'none');
+
+            showHide('guessContainer', 'block');
+
+            //Display Deck ID
+            displayDeckId();
+
+            //Show score
+            showPoints();
+
+
+            //Show Inital card
+            card(card_img);
+
+        })
+        .catch(error => console.error(error));
+};
+
+//To draw a new card from the deck of cards
+drawCard = () => {
+    axios.get(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`)
+        .then(response => {
+            deck_id = response.data.deck_id;
+            card_img = response.data.cards[0].image;
+            end_of_deck = response.data.remaining;
+            curr_card_value = response.data.cards[0].code;
+            //Extracting first character for checking higher/lower value
+            curr_card_value = curr_card_value.charAt(0)
+
+            //Show card
+            card(card_img);
+
+            //points 
+            calcPoints();
+
+            //Reached the end of deck
+            endOfDeck();
+
+        })
+        .catch(error => console.error(error));
+
+}
+
+  
+//Display deck id
+const displayDeckId = () =>{
+    document.getElementById('showDeckID').innerText = `Deck ID: ${deck_id}`;
+}
+
+// create card UI
+const card = () =>{
+    document.getElementById('showCard').innerHTML =`
+        <div class='card fade-in'>
+            <img src= ${card_img}>
+        </div>  
+    `;
+
+}
+
+//guess higher/Lower
+const guessVal=(obj)=>{
+
+    if(obj == 'isHigher'){
+        isHigher = 1 ;
+    }
+    else{
+        isHigher = 0 ;
+     }
+    drawCard() ; 
+}
+
+//end the game
+endgame = (hasWon) =>{
+    showHide('guessContainer','none');
+    showHide('startNewGame','block');
+    points = 0 ;
+    deck_id = null;    
+    showHide('messageConatiner','block');
+    if(hasWon){
+        userMessage('Congratulations! You have completed the deck!');       
+    }
+    else{
+        userMessage('Sorry, incorrect guess. Game over.');
+    }
+}
+
+//Display message to user
+const userMessage =(msg)=>{
+    document.getElementById('messageConatiner').innerText= msg;
+}
+
+//End of Deck
+const endOfDeck = () =>{
+if(end_of_deck == 0){       
+    endgame(true);
+}
+
+}
+
+//Show/Hide elements
+const showHide=(iD,val)=>{
+    document.getElementById(iD).style.display=val;
+}
+
+//Calculate points
+const calcPoints = () =>{
+          
+    let curr = cardValueMap.get ( curr_card_value ) ;
+    let prev = cardValueMap.get ( prev_card_value ) ;
+    
+
+    if( ( ( isHigher ) && ( curr >= prev ) ) || 
+        ( ( !isHigher) && ( curr <= prev ) ) ) {
+        points += 1;
+        prev_card_value = curr_card_value;
+        showPoints();
+    }
+    else{
+        
+        endgame (false) ;
+    }
+}
+
+const showPoints =()=>{
+    document.getElementById('showPoints').innerText= `Your score: ${points}`;
+}
+
+
+
+    

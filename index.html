@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deck of Cards</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="scripts.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1 class="titleText">Deck of Cards</h1>
+        </header>
+        <main class="main">   
+             <div class="topBar">
+                    <div id="showPoints"></div>
+                    <div id="showDeckID"></div>
+                </div>
+            <div class="container" style='min-height:383px;'>
+               
+                <section class="leftCol">
+                    <div class="instructions">
+                        <h2>Instructions</h2>
+                        <ul>
+                            <li>Click 'Start new game' button to begin the game</li>
+                            <li>Place your guess of the next card by clicking 'Higher' or 'Lower' button</li>
+                            <li>Note: Ace has the lowest value of 1.</li>
+                        </ul>
+                        <h2>HIGH SCORES</h2>
+                        <ol id=”highScores”></ol>
+                    </div>
+                   <!--<button type="button" id="drawCardBtn" onclick="drawCard()">Draw a card</button>--> 
+                   <div id="messageConatiner" style="display:none"></div>
+                   <button type="button" id="startNewGame"  onclick="fetchNewDeck()">Start new game</button>
+ 
+                   
+                   <div id="endOfDeck" style="display: none;">You have reached the end of deck</div>
+                    <div id="guessContainer" class="guessContainer" style="display:none">
+                        <p>Guess the value of the next card</p>
+                        <button type="button" class="higherBtn" onclick="guessVal('isHigher')">Higher</button>
+                        <button type="button" class="lowerBtn" onclick="guessVal('isLower')">Lower</button>
+                    </div>
+               
+                </section>
+                <section class="rightCol">
+                  <div id="showCard"></div>
+                </section>
+            </div>
+        </main>
+        <footer class="footer">
+           
+        </footer>
+    </div>
+</body>
+</html>

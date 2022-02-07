@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #23424A;
+    font-size: 1.3rem;
+}
+
+h1,h2,ul,li {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 1.3rem;
+}
+
+
+h1,h2 {
+    margin-bottom: 0.3em;
+}
+
+.wrapper {
+    width: 80%;
+    max-width: 1260px;
+    margin: 0 auto;
+    box-shadow: 0 0 30px #000;
+    background-color: white;
+    font-size: 1.1rem;
+}
+
+
+.footer,.header,.container {
+    padding: 2rem 3rem;
+}
+
+.header,.footer {
+    background-color: #7b8b8c;
+}
+
+.rightCol {
+    padding-top: 3em;    
+}
+
+.titleText {
+    font-size: 2rem;
+    padding: 2rem 3rem 0;
+}
+
+.userForm ul {
+    list-style-type: none;
+}
+
+.userForm_required {
+    color: red;
+}
+
+.formInstructions {
+    margin-top: 1em;
+    list-style-type: disc;
+    color: rgb(42, 108, 136);
+    list-style-position: inside;
+    line-height: 1.5em;
+}
+
+textarea {
+    min-height: 6rem;
+    resize: vertical;
+}
+
+.userForm_submitBtn {
+    background: rgb(7, 173, 7);
+    color: white;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    border: none;
+    font-size: 1em;
+}
+
+.userForm_submitBtn:hover,
+.userForm_submitBtn:focus {
+    opacity: .75;
+}
+
+.userForm input[type=text], .userForm_submitBtn, textarea, input[type=tel] {
+    padding: .5em;
+     width: 100%;
+}
+
+.userForm label {
+    width: 10em;
+    display: block;
+}
+
+
+.userForm_submitBtn {
+    margin: 0 auto;
+}
+
+.userForm ul li {
+    margin-bottom: 1.2em;
+}
+
+
+.submitLabel {
+    font-size: 0;
+}
+
+
+@media (min-width: 640px) {
+
+    .userForm ul li {
+        display: flex;
+        align-items: center;
+    }
+
+    .userForm input[type=text], .userForm_submitBtn, textarea, input[type=tel] {
+        flex: 1;
+    }
+
+    .userForm ul {
+        max-width: 600px;
+    }
+
+    .submitLabel {
+        font-size: 1.1rem;
+    }
+
+}
+
+
+@media (min-width: 900px) {
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .leftCol {
+        width: 40%;
+    }
+
+    .rightCol {
+        padding-top: 0;
+        width: 51%;
+     }
+
+
+    .userForm ul li {
+        display: flex;
+        align-items: center;
+    }
+
+ 
+    .userForm input[type=text], textarea, input[type=tel] {
+        flex: 1;
+    }
+
+    .userForm_submitBtn {
+        flex: none;
+        width: 30%;
+        margin: 0 auto;
+    }
+
+
+
+} 
