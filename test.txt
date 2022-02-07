@@ -1,4 +1,4 @@
-//added comment // more comment
+//added comment // more comment //and one more
 
 var deck_id, card_img, prev_card_value, curr_card_value, isHigher, end_of_deck;
 var points = 0 ;
